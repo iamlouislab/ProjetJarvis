@@ -34,16 +34,25 @@ def print_usage():
     print("Usage example: ", agent_name, " --verbose --port 5670 --device device_name")
     print("\nthese parameters have default value (indicated here above):")
     print("--verbose : enable verbose mode in the application (default is disabled)")
-    print("--port port_number : port used for autodiscovery between agents (default: 31520)")
-    print("--device device_name : name of the network device to be used (useful if several devices available)")
-    print("--name agent_name : published name for this agent (default: ", agent_name, ")")
-    print("--interactive_loop : enables interactive loop to pass commands in CLI (default: false)")
+    print(
+        "--port port_number : port used for autodiscovery between agents (default: 31520)"
+    )
+    print(
+        "--device device_name : name of the network device to be used (useful if several devices available)"
+    )
+    print(
+        "--name agent_name : published name for this agent (default: ", agent_name, ")"
+    )
+    print(
+        "--interactive_loop : enables interactive loop to pass commands in CLI (default: false)"
+    )
 
 
 def print_usage_help():
     print("Available commands in the terminal:")
     print("	/quit : quits the agent")
     print("	/help : displays this message")
+
 
 def return_iop_value_type_as_str(value_type):
     if value_type == igs.INTEGER_T:
@@ -60,6 +69,7 @@ def return_iop_value_type_as_str(value_type):
         return "Data"
     else:
         return "Unknown"
+
 
 def return_event_type_as_str(event_type):
     if event_type == igs.PEER_ENTERED:
@@ -82,6 +92,7 @@ def return_event_type_as_str(event_type):
         return "AGENT_LOST_ELECTION"
     else:
         return "UNKNOWN"
+
 
 def signal_handler(signal_received, frame):
     global is_interrupted
@@ -113,12 +124,14 @@ def voice_input_callback(iop_type, name, value_type, value, my_data):
         agent_object = my_data
         assert isinstance(agent_object, AgentVoiceToText)
         agent_object.voiceI = value
+
+        agent_object.textO = str(value, encoding="utf-8")
         # add code here if needed
     except:
         print(traceback.format_exc())
 
-if __name__ == "__main__":
 
+if __name__ == "__main__":
     # catch SIGINT handler before starting agent
     signal.signal(signal.SIGINT, signal_handler)
     interactive_loop = False
@@ -158,18 +171,28 @@ if __name__ == "__main__":
         list_addresses = igs.net_addresses_list()
         if len(list_devices) == 1:
             device = list_devices[0]
-            igs.info("using %s as default network device (this is the only one available)" % str(device))
-        elif len(list_devices) == 2 and (list_addresses[0] == "127.0.0.1" or list_addresses[1] == "127.0.0.1"):
+            igs.info(
+                "using %s as default network device (this is the only one available)"
+                % str(device)
+            )
+        elif len(list_devices) == 2 and (
+            list_addresses[0] == "127.0.0.1" or list_addresses[1] == "127.0.0.1"
+        ):
             if list_addresses[0] == "127.0.0.1":
                 device = list_devices[1]
             else:
                 device = list_devices[0]
-            print("using %s as de fault network device (this is the only one available that is not the loopback)" % str(device))
+            print(
+                "using %s as de fault network device (this is the only one available that is not the loopback)"
+                % str(device)
+            )
         else:
             if len(list_devices) == 0:
                 igs.error("No network device found: aborting.")
             else:
-                igs.error("No network device passed as command line parameter and several are available.")
+                igs.error(
+                    "No network device passed as command line parameter and several are available."
+                )
                 print("Please use one of these network devices:")
                 for device in list_devices:
                     print("	", device)

@@ -477,24 +477,124 @@
                 },
                 "identity": "AgentVoiceToText",
                 "instances": [
+                    {
+                        "commandLine": "/Library/Developer/CommandLineTools/usr/bin/python3 AgentVoiceToText/src/main.py --port 9182 --device en0",
+                        "hostname": "lamoros-MacBook-Air.local",
+                        "ipAddress": "172.22.225.43",
+                        "mac": "10:B5:88:5E:32:56"
+                    }
                 ],
                 "view": {
                     "height": 40,
                     "isCollapsed": false,
                     "positionX": 359,
                     "positionY": 689,
-                    "positionZ": 1.2300000000000002,
+                    "positionZ": 1.2700000000000002,
                     "width": 252
                 }
             }
         ],
         "mappings": [
+            {
+                "fromAgent": "Whiteboard",
+                "fromInput": "title",
+                "toAgent": "AgentVoiceToText",
+                "toOutput": "text"
+            },
+            {
+                "fromAgent": "AgentVoiceToText",
+                "fromInput": "voice",
+                "toAgent": "804e015b-36d0-4ca0-829d-b1e9d60d08e1",
+                "toOutput": "value"
+            },
+            {
+                "fromAgent": "e2bf0eff-d234-404b-add2-e4f0a48cd82d",
+                "fromInput": "wildcard",
+                "toAgent": "AgentVoiceToText",
+                "toOutput": "text"
+            }
         ],
         "splits": [
         ],
         "splitters": [
         ],
         "tools": [
+            {
+                "data": {
+                    "entry 0": "test"
+                },
+                "definition": {
+                    "description": "",
+                    "family": "fbba66d6-8d60-4694-b5fa-63b6f3f51e63",
+                    "inputs": [
+                        {
+                            "description": "",
+                            "name": "trigger",
+                            "type": "IMPULSION"
+                        }
+                    ],
+                    "isDynamic": false,
+                    "name": "",
+                    "outputs": [
+                        {
+                            "description": "",
+                            "name": "value",
+                            "type": "STRING"
+                        }
+                    ],
+                    "parameters": [
+                    ],
+                    "services": [
+                    ],
+                    "version": ""
+                },
+                "identity": "804e015b-36d0-4ca0-829d-b1e9d60d08e1",
+                "instances": [
+                ],
+                "view": {
+                    "height": 52,
+                    "isCollapsed": false,
+                    "positionX": 124,
+                    "positionY": 548,
+                    "positionZ": 1.3000000000000003,
+                    "width": 256
+                }
+            },
+            {
+                "data": {
+                },
+                "definition": {
+                    "description": "",
+                    "family": "7fc274c8-b06e-429b-9d09-d14878381016",
+                    "inputs": [
+                        {
+                            "description": "",
+                            "name": "wildcard",
+                            "type": "WILDCARD_SINGLE_MAPPING"
+                        }
+                    ],
+                    "isDynamic": false,
+                    "name": "",
+                    "outputs": [
+                    ],
+                    "parameters": [
+                    ],
+                    "services": [
+                    ],
+                    "version": ""
+                },
+                "identity": "e2bf0eff-d234-404b-add2-e4f0a48cd82d",
+                "instances": [
+                ],
+                "view": {
+                    "height": 46,
+                    "isCollapsed": false,
+                    "positionX": 693.8642499769402,
+                    "positionY": 817.6275422085482,
+                    "positionZ": 1.2800000000000002,
+                    "width": 180
+                }
+            }
         ]
     },
     "snippets": [
