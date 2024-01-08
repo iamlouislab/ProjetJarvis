@@ -3,8 +3,8 @@
 
 #
 #  main.py
-#  AgentVoiceToText version 1.0
-#  Created by Ingenuity i/o on 2023/12/18
+#  VoiceToText version 1.0
+#  Created by Ingenuity i/o on 2024/01/08
 #
 # "no description"
 #
@@ -16,10 +16,10 @@ from pathlib import Path
 import traceback
 import sys
 
-from AgentVoiceToText import *
+from VoiceToText import *
 
 port = 5670
-agent_name = "AgentVoiceToText"
+agent_name = "VoiceToText"
 device = None
 verbose = False
 is_interrupted = False
@@ -103,7 +103,7 @@ def signal_handler(signal_received, frame):
 def on_agent_event_callback(event, uuid, name, event_data, my_data):
     try:
         agent_object = my_data
-        assert isinstance(agent_object, AgentVoiceToText)
+        assert isinstance(agent_object, VoiceToText)
         # add code here if needed
     except:
         print(traceback.format_exc())
@@ -112,21 +112,22 @@ def on_agent_event_callback(event, uuid, name, event_data, my_data):
 def on_freeze_callback(is_frozen, my_data):
     try:
         agent_object = my_data
-        assert isinstance(agent_object, AgentVoiceToText)
+        assert isinstance(agent_object, VoiceToText)
         # add code here if needed
     except:
         print(traceback.format_exc())
 
 
 # inputs
-def voice_input_callback(iop_type, name, value_type, value, my_data):
+def voice_path_input_callback(iop_type, name, value_type, value, my_data):
     try:
         agent_object = my_data
-        assert isinstance(agent_object, AgentVoiceToText)
-        agent_object.voiceI = value
-
-        agent_object.textO = str(value, encoding="utf-8")
+        assert isinstance(agent_object, VoiceToText)
+        agent_object.voice_pathI = value
         # add code here if needed
+
+        text = path_to_text(agent_object.voice_pathI)
+        agent_object.textO = text
     except:
         print(traceback.format_exc())
 
@@ -199,16 +200,16 @@ if __name__ == "__main__":
                 print_usage()
             exit(1)
 
-    agent = AgentVoiceToText()
+    agent = VoiceToText()
 
     igs.observe_agent_events(on_agent_event_callback, agent)
     igs.observe_freeze(on_freeze_callback, agent)
 
-    igs.input_create("voice", igs.DATA_T, None)
+    igs.input_create("voice_path", igs.STRING_T, None)
 
     igs.output_create("text", igs.STRING_T, None)
 
-    igs.observe_input("voice", voice_input_callback, agent)
+    igs.observe_input("voice_path", voice_path_input_callback, agent)
 
     igs.start_with_device(device, port)
     # catch SIGINT handler after starting agent
