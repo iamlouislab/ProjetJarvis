@@ -15,7 +15,7 @@ import time
 from pathlib import Path
 import traceback
 import sys
-
+from ..Whiteboard import printMessage
 from VoiceToText import *
 
 port = 5670
@@ -127,6 +127,7 @@ def voice_path_input_callback(iop_type, name, value_type, value, my_data):
         # add code here if needed
 
         text = path_to_text(agent_object.voice_pathI)
+        printMessage("New prompt")
         agent_object.textO = text
     except:
         print(traceback.format_exc())
