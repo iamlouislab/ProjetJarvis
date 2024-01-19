@@ -15,8 +15,9 @@ import time
 from pathlib import Path
 import traceback
 import sys
-
 from TextToVoice import *
+sys.path.append("../..")
+from Whiteboard import printMessage
 
 port = 5670
 agent_name = "TextToVoice"
@@ -125,8 +126,9 @@ def text_input_callback(iop_type, name, value_type, value, my_data):
         assert isinstance(agent_object, TextToVoice)
         agent_object.textI = value
         # add code here if needed
-
+        printMessage("LLM response go to text input callback")
         data = text_to_speech(agent_object.textI)
+        printMessage("speech generated")
         agent_object.voiceO = data
     except:
         print(traceback.format_exc())
