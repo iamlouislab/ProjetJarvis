@@ -10,6 +10,7 @@
 #
 import ingescape as igs
 from gtts import gTTS
+import pygame
 
 
 class Singleton(type):
@@ -56,4 +57,12 @@ def text_to_speech(text, lang="en"):
 
     with open(filename, "rb") as f:
         data = f.read()
+
+    print("reading sound file...")
+    pygame.mixer.init()
+    pygame.mixer.music.load(filename)
+    pygame.mixer.music.play()
+    while pygame.mixer.music.get_busy():
+        pygame.time.Clock().tick(10)
+
     return data
