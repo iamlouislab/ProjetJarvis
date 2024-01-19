@@ -1,4 +1,4 @@
-useLLM = True
+useLLM = False
 
 if useLLM:
     from gpt4all import GPT4All

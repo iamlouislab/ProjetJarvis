@@ -19,7 +19,7 @@ import sys
 from LLMAgent import *
 from GPT import handlePrompt
 sys.path.append("../..")
-from Whiteboard import printMessage
+from Whiteboard import printMessage, printGif
 
 port = 5670
 agent_name = "LLMAgent"
@@ -129,6 +129,7 @@ def prompt_input_callback(iop_type, name, value_type, value, my_data):
         agent_object.promptI = value
         # add code here if needed
         printMessage("prompt is given")
+        printGif()
         # call the GPT function
         promptResponse = handlePrompt(agent_object.promptI)
         # set the output
