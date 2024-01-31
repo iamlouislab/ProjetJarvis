@@ -15,8 +15,15 @@ import time
 from pathlib import Path
 import traceback
 import sys
-from ..Whiteboard import printMessage
 from VoiceToText import *
+
+# sys.path.append("../..")
+# from Whiteboard import printMessage
+
+
+def printMessage(message):
+    igs.service_call("Whiteboard", "chat", (message), "")
+
 
 port = 5670
 agent_name = "VoiceToText"
@@ -125,9 +132,9 @@ def voice_path_input_callback(iop_type, name, value_type, value, my_data):
         assert isinstance(agent_object, VoiceToText)
         agent_object.voice_pathI = value
         # add code here if needed
-
+        printMessage("voice received")
         text = path_to_text(agent_object.voice_pathI)
-        printMessage("New prompt")
+        printMessage("text genarated")
         agent_object.textO = text
     except:
         print(traceback.format_exc())
