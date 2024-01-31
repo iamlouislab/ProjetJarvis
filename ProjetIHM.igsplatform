@@ -423,13 +423,13 @@
                     {
                         "commandLine": "/private/var/folders/st/45rn4fw93j19g8zv432nxf6w0000gp/T/AppTranslocation/511BDAB4-C2EE-4D81-A61A-9266334B1AFD/d/Whiteboard.app/Contents/MacOS/Whiteboard",
                         "hostname": "lamoros-MacBook-Air.local",
-                        "ipAddress": "172.22.225.1",
+                        "ipAddress": "192.168.1.33",
                         "mac": "10:B5:88:5E:32:56"
                     },
                     {
                         "commandLine": "/Users/lamoros/Desktop/Whiteboard.app/Contents/MacOS/Whiteboard --port 9182",
                         "hostname": "lamoros-MacBook-Air.local",
-                        "ipAddress": "172.22.225.1",
+                        "ipAddress": "192.168.1.33",
                         "mac": "10:B5:88:5E:32:56"
                     },
                     {
@@ -480,7 +480,7 @@
                     {
                         "commandLine": "/Library/Developer/CommandLineTools/usr/bin/python3 TextToVoice/src/main.py --port 9182 --device en0",
                         "hostname": "lamoros-MacBook-Air.local",
-                        "ipAddress": "172.22.225.1",
+                        "ipAddress": "192.168.1.33",
                         "mac": "10:B5:88:5E:32:56"
                     }
                 ],
@@ -531,7 +531,7 @@
                     {
                         "commandLine": "/Library/Developer/CommandLineTools/usr/bin/python3 LLMAgent/src/main.py --port 9182 --device en0",
                         "hostname": "lamoros-MacBook-Air.local",
-                        "ipAddress": "172.22.225.1",
+                        "ipAddress": "192.168.1.33",
                         "mac": "10:B5:88:5E:32:56"
                     }
                 ],
@@ -541,81 +541,6 @@
                     "positionX": 584,
                     "positionY": 657,
                     "positionZ": 1.6200000000000006,
-                    "width": 252
-                }
-            },
-            {
-                "data": {
-                },
-                "definition": {
-                    "description": "",
-                    "family": "",
-                    "inputs": [
-                        {
-                            "description": "",
-                            "name": "action",
-                            "type": "STRING"
-                        }
-                    ],
-                    "isDynamic": false,
-                    "name": "ActionAgent",
-                    "outputs": [
-                    ],
-                    "parameters": [
-                    ],
-                    "services": [
-                    ],
-                    "version": "1.0"
-                },
-                "identity": "ActionAgent",
-                "instances": [
-                ],
-                "view": {
-                    "height": 40,
-                    "isCollapsed": false,
-                    "positionX": 963,
-                    "positionY": 761,
-                    "positionZ": 1.5600000000000005,
-                    "width": 252
-                }
-            },
-            {
-                "data": {
-                },
-                "definition": {
-                    "description": "",
-                    "family": "",
-                    "inputs": [
-                        {
-                            "description": "",
-                            "name": "newLLM",
-                            "type": "STRING"
-                        }
-                    ],
-                    "isDynamic": false,
-                    "name": "LLMChoiceAgent",
-                    "outputs": [
-                        {
-                            "description": "",
-                            "name": "currentLLM",
-                            "type": "STRING"
-                        }
-                    ],
-                    "parameters": [
-                    ],
-                    "services": [
-                    ],
-                    "version": "1.0"
-                },
-                "identity": "LLMChoiceAgent",
-                "instances": [
-                ],
-                "view": {
-                    "height": 40,
-                    "isCollapsed": false,
-                    "positionX": 282,
-                    "positionY": 732,
-                    "positionZ": 1.6100000000000005,
                     "width": 252
                 }
             },
@@ -652,7 +577,7 @@
                     {
                         "commandLine": "/Library/Developer/CommandLineTools/usr/bin/python3 VoiceToText/src/main.py --port 9182 --device en0",
                         "hostname": "lamoros-MacBook-Air.local",
-                        "ipAddress": "172.22.225.1",
+                        "ipAddress": "192.168.1.33",
                         "mac": "10:B5:88:5E:32:56"
                     }
                 ],
@@ -664,6 +589,47 @@
                     "positionZ": 1.8900000000000008,
                     "width": 252
                 }
+            },
+            {
+                "data": {
+                },
+                "definition": {
+                    "description": "",
+                    "family": "",
+                    "inputs": [
+                    ],
+                    "isDynamic": false,
+                    "name": "VoiceHandling",
+                    "outputs": [
+                        {
+                            "description": "",
+                            "name": "voice_file_path",
+                            "type": "STRING"
+                        }
+                    ],
+                    "parameters": [
+                    ],
+                    "services": [
+                    ],
+                    "version": "1.0"
+                },
+                "identity": "VoiceHandling",
+                "instances": [
+                    {
+                        "commandLine": "/Library/Developer/CommandLineTools/usr/bin/python3 VoiceHandling/src/main.py --device en0 --port 9182",
+                        "hostname": "lamoros-MacBook-Air.local",
+                        "ipAddress": "192.168.1.33",
+                        "mac": "10:B5:88:5E:32:56"
+                    }
+                ],
+                "view": {
+                    "height": 40,
+                    "isCollapsed": false,
+                    "positionX": -204,
+                    "positionY": 357,
+                    "positionZ": 2.1099999999999985,
+                    "width": 252
+                }
             }
         ],
         "mappings": [
@@ -672,24 +638,6 @@
                 "fromInput": "text",
                 "toAgent": "LLMAgent",
                 "toOutput": "response"
-            },
-            {
-                "fromAgent": "ActionAgent",
-                "fromInput": "action",
-                "toAgent": "LLMAgent",
-                "toOutput": "response"
-            },
-            {
-                "fromAgent": "LLMAgent",
-                "fromInput": "currentLLM",
-                "toAgent": "LLMChoiceAgent",
-                "toOutput": "currentLLM"
-            },
-            {
-                "fromAgent": "LLMChoiceAgent",
-                "fromInput": "newLLM",
-                "toAgent": "575e8e5c-0851-45a1-be99-a38435b63735",
-                "toOutput": "value"
             },
             {
                 "fromAgent": "a1caf234-d611-42a7-9585-33addfc713ca",
@@ -720,6 +668,12 @@
                 "fromInput": "wildcard",
                 "toAgent": "VoiceToText",
                 "toOutput": "text"
+            },
+            {
+                "fromAgent": "VoiceToText",
+                "fromInput": "voice_path",
+                "toAgent": "VoiceHandling",
+                "toOutput": "voice_file_path"
             }
         ],
         "splits": [
@@ -764,48 +718,7 @@
                     "isCollapsed": true,
                     "positionX": -115,
                     "positionY": 578,
-                    "positionZ": 1.9500000000000008,
-                    "width": 256
-                }
-            },
-            {
-                "data": {
-                    "entry 0": "GPT"
-                },
-                "definition": {
-                    "description": "",
-                    "family": "fbba66d6-8d60-4694-b5fa-63b6f3f51e63",
-                    "inputs": [
-                        {
-                            "description": "",
-                            "name": "trigger",
-                            "type": "IMPULSION"
-                        }
-                    ],
-                    "isDynamic": false,
-                    "name": "",
-                    "outputs": [
-                        {
-                            "description": "",
-                            "name": "value",
-                            "type": "STRING"
-                        }
-                    ],
-                    "parameters": [
-                    ],
-                    "services": [
-                    ],
-                    "version": ""
-                },
-                "identity": "575e8e5c-0851-45a1-be99-a38435b63735",
-                "instances": [
-                ],
-                "view": {
-                    "height": 52,
-                    "isCollapsed": false,
-                    "positionX": -27,
-                    "positionY": 750,
-                    "positionZ": 1.5800000000000005,
+                    "positionZ": 1.9900000000000009,
                     "width": 256
                 }
             },
@@ -910,7 +823,7 @@
                     "isCollapsed": false,
                     "positionX": 409.617245587865,
                     "positionY": 468.7308184269911,
-                    "positionZ": 1.9600000000000009,
+                    "positionZ": 2.0300000000000002,
                     "width": 283
                 }
             }

@@ -3,8 +3,8 @@
 
 #
 #  main.py
-#  VoiceToText version 1.0
-#  Created by Ingenuity i/o on 2024/01/08
+#  VoiceHandling version 1.0
+#  Created by Ingenuity i/o on 2024/01/31
 #
 # "no description"
 #
@@ -15,20 +15,21 @@ import time
 from pathlib import Path
 import traceback
 import sys
-from VoiceToText import *
-sys.path.append("../..")
-from Whiteboard import printMessage
+import flask
+import ingescape as igs
+import flask_cors
+import os
+from pydub import AudioSegment
 
-# sys.path.append("../..")
-# from Whiteboard import printMessage
+from VoiceHandling import *
 
+app = flask.Flask(__name__)
+flask_cors.CORS(app)
 
-def printMessage(message):
-    igs.service_call("Whiteboard", "chat", (message), "")
-
+path_to_save = "/Users/lamoros/Desktop/"
 
 port = 5670
-agent_name = "VoiceToText"
+agent_name = "VoiceHandling"
 device = None
 verbose = False
 is_interrupted = False
@@ -37,6 +38,38 @@ short_flag = "hvip:d:n:"
 long_flag = ["help", "verbose", "interactive_loop", "port=", "device=", "name="]
 
 ingescape_path = Path("~/Documents/Ingescape").expanduser()
+
+
+@app.route("/", methods=["GET"])
+def index():
+    return "Hello, World!"
+
+
+@app.route("/voice_path_input_callback", methods=["POST"])
+def voice_data():
+    print("voice data received")
+    if "file" not in flask.request.files:
+        return "No file part", 400
+
+    file = flask.request.files["file"]
+
+    # If the user does not select a file, the browser submits an
+    # empty file without a filename.
+    if file.filename == "":
+        return "No selected file", 400
+
+    if file:
+        print("file received")
+        file_path = os.path.join(path_to_save, "audio.webm")
+        file.save(file_path)
+        audio = AudioSegment.from_file(file_path, format="webm")
+        audio.export(os.path.join(path_to_save, "audio.mp3"), format="mp3")
+
+        agent.voice_file_pathO = os.path.join(path_to_save, "audio.mp3")
+
+        return "File uploaded successfully", 200
+    else:
+        return "No file received", 400
 
 
 def print_usage():
@@ -112,7 +145,7 @@ def signal_handler(signal_received, frame):
 def on_agent_event_callback(event, uuid, name, event_data, my_data):
     try:
         agent_object = my_data
-        assert isinstance(agent_object, VoiceToText)
+        assert isinstance(agent_object, VoiceHandling)
         # add code here if needed
     except:
         print(traceback.format_exc())
@@ -121,23 +154,8 @@ def on_agent_event_callback(event, uuid, name, event_data, my_data):
 def on_freeze_callback(is_frozen, my_data):
     try:
         agent_object = my_data
-        assert isinstance(agent_object, VoiceToText)
+        assert isinstance(agent_object, VoiceHandling)
         # add code here if needed
-    except:
-        print(traceback.format_exc())
-
-
-# inputs
-def voice_path_input_callback(iop_type, name, value_type, value, my_data):
-    try:
-        agent_object = my_data
-        assert isinstance(agent_object, VoiceToText)
-        agent_object.voice_pathI = value
-        # add code here if needed
-        printMessage("voice received")
-        text = path_to_text(agent_object.voice_pathI)
-        printMessage("text genarated")
-        agent_object.textO = text
     except:
         print(traceback.format_exc())
 
@@ -210,20 +228,18 @@ if __name__ == "__main__":
                 print_usage()
             exit(1)
 
-    agent = VoiceToText()
+    agent = VoiceHandling()
 
     igs.observe_agent_events(on_agent_event_callback, agent)
     igs.observe_freeze(on_freeze_callback, agent)
 
-    igs.input_create("voice_path", igs.STRING_T, None)
-
-    igs.output_create("text", igs.STRING_T, None)
-
-    igs.observe_input("voice_path", voice_path_input_callback, agent)
+    igs.output_create("voice_file_path", igs.STRING_T, None)
 
     igs.start_with_device(device, port)
     # catch SIGINT handler after starting agent
     signal.signal(signal.SIGINT, signal_handler)
+
+    app.run()
 
     if interactive_loop:
         print_usage_help()
