@@ -1,4 +1,4 @@
-useLLM = False
+useLLM = True
 
 if useLLM:
     from gpt4all import GPT4All
@@ -21,6 +21,7 @@ def handlePrompt(prompt: str):
 
 def handlePromptLLM(prompt: str):
     model = GPT4All("orca-mini-3b-gguf2-q4_0.gguf")
-    output = model.generate(prompt, max_tokens=50)
+    fullPrompt = buildPrompt(prompt)
+    output = model.generate(fullPrompt, max_tokens=50)
 
     return output
