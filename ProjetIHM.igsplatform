@@ -436,14 +436,35 @@
                         "commandLine": "/home/n7student/Cours/IHM/Whiteboard-1.0.0_0-amd64/opt/Whiteboard/bin/Whiteboard --device wlo1 --port 5670",
                         "hostname": "n7master",
                         "ipAddress": "172.22.227.148"
+                    },
+                    {
+                        "commandLine": "\"/home/mfranot/annee_3/ihm/Whiteboard-1.0.0_0-amd64 (2)/opt/Whiteboard/bin/Whiteboard\" --port 9182 --device eno1",
+                        "hostname": "frodon.enseeiht.fr",
+                        "ipAddress": "147.127.135.104"
+                    },
+                    {
+                        "commandLine": "\"/home/mfranot/annee_3/ihm/Whiteboard-1.0.0_0-amd64 (2)/opt/Whiteboard/bin/Whiteboard\" --port 9182 --device eno1",
+                        "hostname": "fluor.enseeiht.fr",
+                        "ipAddress": "147.127.133.82"
+                    },
+                    {
+                        "commandLine": "\"/home/mfranot/annee_3/ihm/Whiteboard-1.0.0_0-amd64 (2)/opt/Whiteboard/bin/Whiteboard\" --port 9182 --device en0s31f6",
+                        "hostname": "fluor.enseeiht.fr",
+                        "ipAddress": "147.127.133.82"
+                    },
+                    {
+                        "commandLine": "/home/bnicobah/Annee_3/ProjetJarvis/Whiteboard-1.0.0_0-amd64/opt/Whiteboard/bin/Whiteboard --port 9182 --device enp0s31f6",
+                        "hostname": "galium.enseeiht.fr",
+                        "ipAddress": "147.127.133.65",
+                        "mac": "D8:9E:F3:41:26:3D"
                     }
                 ],
                 "view": {
                     "height": 40,
                     "isCollapsed": false,
-                    "positionX": 1180,
-                    "positionY": 180,
-                    "positionZ": 1.9300000000000008,
+                    "positionX": 259,
+                    "positionY": 224,
+                    "positionZ": 2.04,
                     "width": 252
                 }
             },
@@ -482,6 +503,24 @@
                         "hostname": "lamoros-MacBook-Air.local",
                         "ipAddress": "172.22.225.1",
                         "mac": "10:B5:88:5E:32:56"
+                    },
+                    {
+                        "commandLine": "/usr/bin/python3 src/main.py --port 9182 --device eno1",
+                        "hostname": "gandalf.enseeiht.fr",
+                        "ipAddress": "147.127.135.106",
+                        "mac": "98:90:96:D9:E5:90"
+                    },
+                    {
+                        "commandLine": "/usr/bin/python3 TextToVoice/src/main.py --port 9182 --device enp0s31f6",
+                        "hostname": "galium.enseeiht.fr",
+                        "ipAddress": "147.127.133.65",
+                        "mac": "D8:9E:F3:41:26:3D"
+                    },
+                    {
+                        "commandLine": "/usr/bin/python3 main.py --port 9182 --device enp0s31f6",
+                        "hostname": "galium.enseeiht.fr",
+                        "ipAddress": "147.127.133.65",
+                        "mac": "D8:9E:F3:41:26:3D"
                     }
                 ],
                 "view": {
@@ -533,6 +572,18 @@
                         "hostname": "lamoros-MacBook-Air.local",
                         "ipAddress": "172.22.225.1",
                         "mac": "10:B5:88:5E:32:56"
+                    },
+                    {
+                        "commandLine": "/usr/bin/python3 src/main.py --port 9182 --device eno1",
+                        "hostname": "gandalf.enseeiht.fr",
+                        "ipAddress": "147.127.135.106",
+                        "mac": "98:90:96:D9:E5:90"
+                    },
+                    {
+                        "commandLine": "/usr/bin/python3 main.py --port 9182 -- device enp0s31f6",
+                        "hostname": "galium.enseeiht.fr",
+                        "ipAddress": "147.127.133.65",
+                        "mac": "D8:9E:F3:41:26:3D"
                     }
                 ],
                 "view": {
@@ -654,6 +705,18 @@
                         "hostname": "lamoros-MacBook-Air.local",
                         "ipAddress": "172.22.225.1",
                         "mac": "10:B5:88:5E:32:56"
+                    },
+                    {
+                        "commandLine": "/usr/bin/python3 src/main.py --port 9182 --device eno1",
+                        "hostname": "gandalf.enseeiht.fr",
+                        "ipAddress": "147.127.135.106",
+                        "mac": "98:90:96:D9:E5:90"
+                    },
+                    {
+                        "commandLine": "/usr/bin/python3 main.py --port 9182 -- device enp0s31f6",
+                        "hostname": "galium.enseeiht.fr",
+                        "ipAddress": "147.127.133.65",
+                        "mac": "D8:9E:F3:41:26:3D"
                     }
                 ],
                 "view": {
@@ -680,12 +743,6 @@
                 "toOutput": "response"
             },
             {
-                "fromAgent": "LLMAgent",
-                "fromInput": "currentLLM",
-                "toAgent": "LLMChoiceAgent",
-                "toOutput": "currentLLM"
-            },
-            {
                 "fromAgent": "LLMChoiceAgent",
                 "fromInput": "newLLM",
                 "toAgent": "575e8e5c-0851-45a1-be99-a38435b63735",
@@ -704,12 +761,6 @@
                 "toOutput": "voice"
             },
             {
-                "fromAgent": "LLMAgent",
-                "fromInput": "prompt",
-                "toAgent": "VoiceToText",
-                "toOutput": "text"
-            },
-            {
                 "fromAgent": "VoiceToText",
                 "fromInput": "voice_path",
                 "toAgent": "804e015b-36d0-4ca0-829d-b1e9d60d08e1",
@@ -718,6 +769,12 @@
             {
                 "fromAgent": "9ef31f6e-6c82-418a-8850-ef86f983a7bc",
                 "fromInput": "wildcard",
+                "toAgent": "VoiceToText",
+                "toOutput": "text"
+            },
+            {
+                "fromAgent": "LLMAgent",
+                "fromInput": "prompt",
                 "toAgent": "VoiceToText",
                 "toOutput": "text"
             }
@@ -729,7 +786,7 @@
         "tools": [
             {
                 "data": {
-                    "entry 0": "/Users/lamoros/Desktop/n7/projet-ihm/default-prompt.mp3"
+                    "entry 0": "/home/bnicobah/Annee_3/ProjetJarvis/default-prompt.mp3"
                 },
                 "definition": {
                     "description": "",
@@ -764,7 +821,7 @@
                     "isCollapsed": true,
                     "positionX": -115,
                     "positionY": 578,
-                    "positionZ": 1.9500000000000008,
+                    "positionZ": 2.05,
                     "width": 256
                 }
             },
@@ -805,7 +862,7 @@
                     "isCollapsed": false,
                     "positionX": -27,
                     "positionY": 750,
-                    "positionZ": 1.5800000000000005,
+                    "positionZ": 2.000000000000001,
                     "width": 256
                 }
             },
@@ -910,7 +967,7 @@
                     "isCollapsed": false,
                     "positionX": 409.617245587865,
                     "positionY": 468.7308184269911,
-                    "positionZ": 1.9600000000000009,
+                    "positionZ": 1.9800000000000009,
                     "width": 283
                 }
             }

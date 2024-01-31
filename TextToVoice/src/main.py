@@ -17,7 +17,7 @@ import traceback
 import sys
 from TextToVoice import *
 sys.path.append("../..")
-from Whiteboard import printMessage
+from Whiteboard import printMessage, printSpeakingGif, unprintSpeakingGif, printWaitingGif, unprintWaitingGif
 
 port = 5670
 agent_name = "TextToVoice"
@@ -126,10 +126,13 @@ def text_input_callback(iop_type, name, value_type, value, my_data):
         assert isinstance(agent_object, TextToVoice)
         agent_object.textI = value
         # add code here if needed
+        printWaitingGif()
         printMessage("LLM response go to text input callback")
         data = text_to_speech(agent_object.textI)
+        unprintWaitingGif(1)
         printMessage("speech generated")
         agent_object.voiceO = data
+        printSpeakingGif()
     except:
         print(traceback.format_exc())
 

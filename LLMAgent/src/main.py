@@ -19,7 +19,7 @@ import sys
 from LLMAgent import *
 from GPT import handlePrompt
 sys.path.append("../..")
-from Whiteboard import printMessage, printGif
+from Whiteboard import printMessage, printWaitingGif, unprintWaitingGif
 
 port = 5670
 agent_name = "LLMAgent"
@@ -128,12 +128,13 @@ def prompt_input_callback(iop_type, name, value_type, value, my_data):
         assert isinstance(agent_object, LLMAgent)
         agent_object.promptI = value
         # add code here if needed
+        printWaitingGif()
         printMessage("prompt is given")
-        printGif()
         # call the GPT function
         promptResponse = handlePrompt(agent_object.promptI)
         # set the output
         agent_object.responseO = promptResponse
+        unprintWaitingGif(0)
         printMessage("response received")
     except:
         print(traceback.format_exc())
