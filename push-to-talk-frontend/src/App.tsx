@@ -36,7 +36,8 @@ const PushToTalkButton = () => {
     console.log(recording);
     const formData = new FormData();
     formData.append("file", recording as Blob);
-    const res = fetch("http://localhost:3000/api/voice", {
+    const res = fetch("http://127.0.0.1:5000/voice_path_input_callback", {
+      // const res = fetch("http://localhost:3000", {
       method: "POST",
       body: formData,
     });
