@@ -26,6 +26,7 @@ from VoiceHandling import *
 app = flask.Flask(__name__)
 flask_cors.CORS(app)
 
+path_to_save = "/Users/lamoros/Desktop/"
 
 port = 5670
 agent_name = "VoiceHandling"
@@ -57,7 +58,6 @@ def voice_data():
     if file.filename == "":
         return "No selected file", 400
 
-    path_to_save = "/Users/lamoros/Desktop/"
     if file:
         print("file received")
         file_path = os.path.join(path_to_save, "audio.webm")
