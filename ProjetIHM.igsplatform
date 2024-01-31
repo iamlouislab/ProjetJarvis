@@ -423,13 +423,13 @@
                     {
                         "commandLine": "/private/var/folders/st/45rn4fw93j19g8zv432nxf6w0000gp/T/AppTranslocation/511BDAB4-C2EE-4D81-A61A-9266334B1AFD/d/Whiteboard.app/Contents/MacOS/Whiteboard",
                         "hostname": "lamoros-MacBook-Air.local",
-                        "ipAddress": "172.22.225.1",
+                        "ipAddress": "192.168.1.33",
                         "mac": "10:B5:88:5E:32:56"
                     },
                     {
                         "commandLine": "/Users/lamoros/Desktop/Whiteboard.app/Contents/MacOS/Whiteboard --port 9182",
                         "hostname": "lamoros-MacBook-Air.local",
-                        "ipAddress": "172.22.225.1",
+                        "ipAddress": "192.168.1.33",
                         "mac": "10:B5:88:5E:32:56"
                     },
                     {
@@ -501,7 +501,7 @@
                     {
                         "commandLine": "/Library/Developer/CommandLineTools/usr/bin/python3 TextToVoice/src/main.py --port 9182 --device en0",
                         "hostname": "lamoros-MacBook-Air.local",
-                        "ipAddress": "172.22.225.1",
+                        "ipAddress": "192.168.1.33",
                         "mac": "10:B5:88:5E:32:56"
                     },
                     {
@@ -570,7 +570,7 @@
                     {
                         "commandLine": "/Library/Developer/CommandLineTools/usr/bin/python3 LLMAgent/src/main.py --port 9182 --device en0",
                         "hostname": "lamoros-MacBook-Air.local",
-                        "ipAddress": "172.22.225.1",
+                        "ipAddress": "192.168.1.33",
                         "mac": "10:B5:88:5E:32:56"
                     },
                     {
@@ -592,81 +592,6 @@
                     "positionX": 584,
                     "positionY": 657,
                     "positionZ": 1.6200000000000006,
-                    "width": 252
-                }
-            },
-            {
-                "data": {
-                },
-                "definition": {
-                    "description": "",
-                    "family": "",
-                    "inputs": [
-                        {
-                            "description": "",
-                            "name": "action",
-                            "type": "STRING"
-                        }
-                    ],
-                    "isDynamic": false,
-                    "name": "ActionAgent",
-                    "outputs": [
-                    ],
-                    "parameters": [
-                    ],
-                    "services": [
-                    ],
-                    "version": "1.0"
-                },
-                "identity": "ActionAgent",
-                "instances": [
-                ],
-                "view": {
-                    "height": 40,
-                    "isCollapsed": false,
-                    "positionX": 963,
-                    "positionY": 761,
-                    "positionZ": 1.5600000000000005,
-                    "width": 252
-                }
-            },
-            {
-                "data": {
-                },
-                "definition": {
-                    "description": "",
-                    "family": "",
-                    "inputs": [
-                        {
-                            "description": "",
-                            "name": "newLLM",
-                            "type": "STRING"
-                        }
-                    ],
-                    "isDynamic": false,
-                    "name": "LLMChoiceAgent",
-                    "outputs": [
-                        {
-                            "description": "",
-                            "name": "currentLLM",
-                            "type": "STRING"
-                        }
-                    ],
-                    "parameters": [
-                    ],
-                    "services": [
-                    ],
-                    "version": "1.0"
-                },
-                "identity": "LLMChoiceAgent",
-                "instances": [
-                ],
-                "view": {
-                    "height": 40,
-                    "isCollapsed": false,
-                    "positionX": 282,
-                    "positionY": 732,
-                    "positionZ": 1.6100000000000005,
                     "width": 252
                 }
             },
@@ -703,7 +628,48 @@
                     {
                         "commandLine": "/Library/Developer/CommandLineTools/usr/bin/python3 VoiceToText/src/main.py --port 9182 --device en0",
                         "hostname": "lamoros-MacBook-Air.local",
-                        "ipAddress": "172.22.225.1",
+                        "ipAddress": "192.168.1.33",
+                        "mac": "10:B5:88:5E:32:56"
+                    }
+                ],
+                "view": {
+                    "height": 40,
+                    "isCollapsed": false,
+                    "positionX": 207,
+                    "positionY": 595,
+                    "positionZ": 1.8900000000000008,
+                    "width": 252
+                }
+            },
+            {
+                "data": {
+                },
+                "definition": {
+                    "description": "",
+                    "family": "",
+                    "inputs": [
+                    ],
+                    "isDynamic": false,
+                    "name": "VoiceHandling",
+                    "outputs": [
+                        {
+                            "description": "",
+                            "name": "voice_file_path",
+                            "type": "STRING"
+                        }
+                    ],
+                    "parameters": [
+                    ],
+                    "services": [
+                    ],
+                    "version": "1.0"
+                },
+                "identity": "VoiceHandling",
+                "instances": [
+                    {
+                        "commandLine": "/Library/Developer/CommandLineTools/usr/bin/python3 VoiceHandling/src/main.py --device en0 --port 9182",
+                        "hostname": "lamoros-MacBook-Air.local",
+                        "ipAddress": "192.168.1.33",
                         "mac": "10:B5:88:5E:32:56"
                     },
                     {
@@ -722,9 +688,9 @@
                 "view": {
                     "height": 40,
                     "isCollapsed": false,
-                    "positionX": 207,
-                    "positionY": 595,
-                    "positionZ": 1.8900000000000008,
+                    "positionX": -204,
+                    "positionY": 357,
+                    "positionZ": 2.1099999999999985,
                     "width": 252
                 }
             }
