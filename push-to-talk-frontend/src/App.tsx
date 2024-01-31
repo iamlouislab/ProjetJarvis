@@ -28,6 +28,7 @@ const PushToTalkButton = () => {
   const [recording, setRecording] = useState<Blob | null>(null);
 
   const addAudioElement = (blob: Blob) => {
+    console.log("add audioelement");
     setRecording(blob);
   };
 
@@ -42,6 +43,7 @@ const PushToTalkButton = () => {
       body: formData,
     });
     console.log(res);
+    setRecording(null);
   };
 
   return (
@@ -50,7 +52,9 @@ const PushToTalkButton = () => {
         onRecordingComplete={(blob) => addAudioElement(blob)}
         recorderControls={recorderControls}
       />
-      <button onClick={sendRecording}>Send recording</button>
+      <button onClick={sendRecording} disabled={recording === null}>
+        Send recording
+      </button>
     </div>
   );
 };
