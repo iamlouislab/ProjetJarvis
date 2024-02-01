@@ -1,0 +1,14 @@
+/*
+* VoiceToText agent
+*/
+
+"Inputs" "Test inputs" {
+    VoiceToText.voice_path = "Hello world"
+    assert VoiceToText.voice_path == "Input voice_path: Hello world"
+}
+
+
+"Services" "Test services" {
+    VoiceToText.voice_path_input_callback("","","","/home/bnicobah/Annee_3/ProjetJarvis/default-prompt.mp3","VoiceToText()")
+    assert VoiceToText.text0 == "what is the capital of France"
+}
